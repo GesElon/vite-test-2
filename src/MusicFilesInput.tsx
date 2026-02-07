@@ -52,7 +52,7 @@ function MusicFilesInput({ outputsRef }: MusicFilesInputProps) {
   return (
     <div className="music-files-input">
       <label className="add-file-button">
-        <input type="file" multiple accept="audio/*" onChange={async (e) => {
+        <input type="file" multiple accept="audio/mpeg, audio/wav, .mp3, .wav" onChange={async (e) => {
           const files = e.target.files;
           if (!files) return;
 
