@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+import partyHornMp3 from './assets/audios/party-horn.mp3'
+
 // @ts-ignore
 const confetti = require('canvas-confetti');
 
@@ -8,8 +10,13 @@ type CongratsSectionProps = {
   isSessionFinished: boolean
 }
 
+const partyHornSfx = new Audio(partyHornMp3);
+
 function CongratsSection({ isSessionFinished }: CongratsSectionProps) {
   const fireConfetti = () => {
+    partyHornSfx.currentTime = 0;
+    partyHornSfx.play();
+
     const options = {
       particleCount: 300,
       spread: 70,
