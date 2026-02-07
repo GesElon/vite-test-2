@@ -1,0 +1,426 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: white;
+  background-image: url('/imgs/app-bg.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: hue-rotate(0deg);
+}
+
+.header {
+  margin-bottom: 1.5rem;
+
+  .title {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+.app-ctn {
+  filter: hue-rotate(0deg); /* Because stupid body background filter. */
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 50%,rgba(255, 255, 255, 0.6) 100%);
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid white;
+  border-radius: 1rem;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  width: 600px;
+  max-width: calc(100dvw - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: scroll;
+  box-shadow: 0 0 .4rem hsla(25, 10%, 60%, 0.75);
+}
+
+.session-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .section-separator {
+    margin: 0 auto;
+    height: 0px;
+    width: 90%;
+    border-top: 1px solid white;
+  }
+}
+
+.three-column-grid {
+  display: grid;
+  column-gap: 1rem;
+  row-gap: .25rem;
+  grid-template-columns: auto auto auto;
+
+  * {
+    width: 100%;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    width: 2rem;
+    border-radius: 0.75em;
+    border: none;
+  }
+
+  input[type="number"]:focus {
+    outline: 1px solid #ff8a00;
+  }
+
+  label, span {
+    text-align: left;
+  }
+}
+
+::-webkit-scrollbar {
+  appearance: none;
+  height: 0px;
+  width: 0px;
+}
+
+.music-files-input {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: .75rem;
+  padding: .5rem;
+
+  .vertical-separator {
+    width: .2rem;
+    height: 2rem;
+    margin: 0 .4rem;
+    background-color: hsl(25, 20%, 70%);
+    border-radius: 100rem;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .add-file-button, .music-file-item {
+    border-radius: .5rem;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: min(12dvh, 12dvw);
+    height: min(12dvh, 12dvw);
+  }
+
+  .add-file-button {
+    cursor: pointer;
+    outline: 1px solid transparent;
+    background-image: url('/imgs/plus-solid-full.svg');
+    background-color: hsl(0, 0%, 90%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50% 50%;
+    transition: outline 0.13s ease-in-out;
+  }
+
+  .add-file-button:hover {
+    outline: 1px solid#ff8a00;
+  }
+
+  .music-file-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: calc(5 * min(12dvh, 12dvw) + 4 * 0.5rem);
+    gap: 0.5rem;
+    overflow-x: scroll;
+  }
+
+  .music-file-item {
+    position: relative;
+    background-color: peru;
+
+    img {
+      border-radius: .5rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .music-file-item:hover {
+    .remove-file-btn {
+      top: 0;
+    }
+    .remove-file-btn::before {
+      opacity: 1;
+    }
+  }
+
+  .remove-file-btn {
+    cursor: pointer;
+    position: absolute;
+    top: -5%;
+    right: 0;
+    border: none;
+    background: none;
+    width: 30%;
+    height: 30%;
+    transition: top 0.13s ease-in-out;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background-image: url('/imgs/circle-xmark-regular-full.svg');
+      background-size: contain;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      transition: opacity 0.13s ease-in-out;
+    }
+  }
+}
+
+/* Mobile portrait mode */
+@media (max-width: 768px) and (orientation: portrait) {
+  .music-files-input {
+    .add-file-button, .music-file-item {
+      width: min(18dvw, 18dvh);
+      height: min(18dvw, 18dvh);
+    }
+
+    .music-file-list {
+      width: calc(3 * min(18dvh, 18dvw) + 2 * 0.5rem);
+    }
+  }
+}
+
+.gradient-btn {
+  cursor: pointer;
+  background-image: linear-gradient(90deg, #ff8a00, #e52e71);
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: .5rem;
+  color: white;
+  padding: 0.6em 1.2em;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: .5rem;
+}
+
+.start-btn:hover {
+  filter: brightness(1.1);
+}
+
+.session-section-ctn {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+}
+
+.session-section {
+  display: flex;
+  flex-direction: row;
+  width: 100dvw;
+  height: 100dvh;
+  align-items: center;
+  opacity: 0;
+}
+
+.session-section-bg {
+  display: inline-block;
+  position: fixed;
+  width: min(100dvh, 100dvw);
+  height: min(100dvh, 100dvw);
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: -1;
+  mask-size: 120%;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-image: url('/imgs/session-bg-mask-2048p.png');
+}
+
+.music-info-display,
+.progress-info-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+  margin: clamp(0rem, -20rem + 32vw, 2rem);
+}
+
+.picture-disk {
+  width: 80%;
+  aspect-ratio: 1;
+  background-image: url('/imgs/app-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  animation: disk-spin 60s linear infinite;
+}
+
+@keyframes disk-spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.music-title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.audio-visualizer-ctn {
+  background-color: pink;
+  justify-self: center;
+}
+
+.audio-visualizer-canvas {
+  width: 600px;
+  aspect-ratio: 1.5/1;
+}
+
+.audio-play-btn {
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5rem;
+  height: 5rem;
+  border: none;
+  border-radius: 50%;
+  background-size: 50%;
+  background-color: #ff8a00;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.phase-progress-display {
+  font-size: clamp(3rem, 10dvw, 9rem);
+  color: #ff8a00;
+}
+
+.cycle-display {
+ font-size: clamp(1rem, 4dvw, 3rem);
+  font-weight: bold;
+}
+
+.phase-display {
+  font-size: clamp(0.5rem, 3dvw, 2rem);
+}
+
+.congrats-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  background-color: white;
+}
+
+.congrats-heading {
+  font-size: clamp(1rem, 10dvw, 4rem);
+}
+
+.congrats-text {
+  font-size: 1.2rem;
+}
+
+.dot75-size-font {
+  font-size: 0.75rem;
+}
+
+/* Mobile portrait mode */
+@media (max-width: 768px) and (orientation: portrait) {
+  .session-section {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .session-section-bg {
+    width: 100%;
+    height: 100%;
+    background-size: 150%;
+    mask-size: 200%;
+  }
+
+  .music-info-display {
+    order: 3;
+    justify-content: flex-start;
+  }
+
+  .music-title {
+    margin-top: 3rem;
+  }
+
+  .picture-disk {
+    display: none;
+  }
+
+  .audio-visualizer-canvas {
+    order: 2;
+    width: clamp(10%, 90dvw, 100%);
+  }
+
+  .progress-info-display {
+    order: 1;
+  }
+
+  .phase-progress-display {
+    font-size: clamp(3rem, 10dvh, 9rem);
+    color: #ff8a00;
+  }
+
+  .cycle-display {
+    font-size: clamp(1rem, 4dvh, 3rem);
+    font-weight: bold;
+  }
+
+  .phase-display {
+    font-size: clamp(0.5rem, 3dvh, 2rem);
+  }
+}
